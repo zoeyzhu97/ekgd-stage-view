@@ -1,0 +1,1847 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>埃科光电 · 阶段判断公开查询</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f7f3ee;color:#2d2d2d;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei','Noto Sans CJK SC',Arial,sans-serif;min-height:100vh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#c4b8a8;border-radius:3px}
+.mono{font-family:'SFMono-Regular',Consolas,'Liberation Mono','Courier New',monospace}
+.container{max-width:860px;margin:0 auto;padding:0 18px 40px}
+
+.header{background:#fff;border-bottom:1px solid #e0d8cc;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.header h1{font-size:20px;font-weight:900;color:#1a1a2e}
+.header .sub{font-size:11px;color:#888;margin-top:2px}
+.priceline{display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;align-items:center}
+.price{font-size:30px;font-weight:900}
+.price.up{color:#dc2626}.price.down{color:#16a34a}
+.phase-badge{font-size:14px;font-weight:900;padding:5px 16px;border-radius:20px}
+
+.card{background:#fff;border:1px solid #e0d8cc;border-radius:12px;padding:16px 18px;margin-top:13px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.card h3{font-size:13px;font-weight:700;color:#888;margin-bottom:12px}
+
+.gauges{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gauge{background:#faf7f2;border:1px solid #e8e0d4;border-radius:10px;padding:14px;text-align:center}
+.gauge-label{font-size:12px;color:#666;margin-bottom:4px}
+.gauge-val{font-size:34px;font-weight:900}
+.gauge-bar{height:6px;background:#e8e0d4;border-radius:3px;overflow:hidden;margin-top:8px}
+.gauge-fill{height:100%;border-radius:3px;transition:width .4s}
+
+.advice{margin-top:12px;padding:14px 16px;border-radius:10px;font-size:14px;line-height:1.8;font-weight:500}
+
+.factor{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid #f0ebe3;font-size:13px}
+.factor:last-child{border-bottom:none}
+.factor-icon{width:20px;flex-shrink:0;font-size:14px}
+.factor-label{flex:1;color:#333;font-weight:500}
+.factor-label .detail{display:block;font-size:11px;color:#999;font-weight:400;margin-top:1px}
+.factor-pts{font-weight:900;flex-shrink:0}
+.factor.on .factor-pts{color:#15803d}
+.factor.off{opacity:.45}
+.factor.off .factor-pts{color:#bbb}
+.factor.penalty .factor-pts{color:#dc2626}
+
+.fals-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:10px;border:1px solid;margin-bottom:8px}
+.fals-item.ok{background:#f0faf0;border-color:#a3d9a3}
+.fals-item.hit{background:#fef2f2;border-color:#f87171}
+.fals-item.wait{background:#faf7f2;border-color:#e0d8cc}
+.fals-title{font-size:13px;font-weight:700;color:#1a1a2e}
+.fals-desc{font-size:11.5px;color:#666;margin-top:1px;line-height:1.6}
+
+.ladder-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #f0ebe3;font-size:12.5px}
+.ladder-row:last-child{border-bottom:none}
+.ladder-price{width:60px;font-weight:900;color:#1a1a2e}
+.ladder-name{flex:1;color:#666;font-size:11.5px}
+.ladder-dist{width:64px;text-align:right;font-weight:700}
+.ladder-row.passed .ladder-price,.ladder-row.passed .ladder-dist{color:#15803d}
+
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#f0ebe3;color:#666;padding:8px 5px;text-align:center;font-weight:600;font-size:11px;white-space:nowrap}
+td{padding:8px 5px;text-align:center;border-bottom:1px solid #f0ebe3;white-space:nowrap}
+tr:nth-child(even){background:#faf7f2}
+.ph-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+
+.btn{padding:12px 20px;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;margin-top:8px;background:#6366f1;color:#fff}
+.retry-btn{display:none;border:1px solid #d0c8bc;border-radius:6px;background:#fff;color:#4f46e5;padding:4px 9px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit}
+.status-line{font-size:11px;color:#999;margin-top:8px;text-align:center}
+.footer{text-align:center;padding:24px 0 10px;font-size:10px;color:#ccc}
+
+body{padding:0 12px}.container{margin:auto}.card{overflow:hidden}h1{font-size:clamp(22px,4vw,32px)}label,select,p{font-size:15px}select{padding:5px}.scroll{overflow:auto;max-height:65vh}thead{position:sticky;top:0;background:#faf7f2}.quote{font-size:26px;font-weight:700}.summary{display:flex;align-items:center;gap:15px;flex-wrap:wrap}.summary strong{white-space:nowrap}</style>
+<main class="container"><h1>埃科光电 · 阶段判断公开查询</h1><p>688610.SH · 收盘数据 · 数据截至 2026-11-20 · 295个交易日 · 东方财富</p>
+<section class="card"><h3>阶段判断</h3><div class="summary"><strong class="quote">58.64 元</strong><strong>-8.65%</strong><strong>破位下跌</strong></div><p>买入评分 <b>10</b> / 100　风险评分 <b>0</b> / 100</p></section>
+<section class="card"><h3>买入评分明细</h3><div class="factor on">
+      <span class="factor-icon">✅</span>
+      <span class="factor-label">波段动能衰竭<span class="detail">衰竭度0.09（标准<0.35）</span></span>
+      <span class="factor-pts mono">+15</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">低点保持≥3天<span class="detail">低点58.6（2026-11-20）已保持0天</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">低点后逐步走高<span class="detail">连续收高且未回落至低点</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">涨日量>跌日量（资金在进）<span class="detail">比值--（≥1.2得15分，≥1.5得20分）</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">连涨且温和放量<span class="detail">连续2日上涨，量递增但未爆量</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">日内收盘强势<span class="detail">收于当日振幅8%位置（≥60%）</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">站上5日均线<span class="detail">MA5=64.54</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">站上10日均线<span class="detail">MA10=69.46</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">收复第一阻力 98.57<span class="detail">突破7/20崩盘缺口</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">跑赢科创50<span class="detail">5日相对强度-15%</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div><div class="factor on">
+      <span class="factor-icon">✅</span>
+      <span class="factor-label">融资余额回升<span class="detail">杠杆资金回流</span></span>
+      <span class="factor-pts mono">+5</span>
+    </div><div class="factor off">
+      <span class="factor-icon">○</span>
+      <span class="factor-label">大阳线判定为真反弹<span class="detail">近期无≥8%大阳线</span></span>
+      <span class="factor-pts mono">+0</span>
+    </div></section>
+<section class="card"><h3>证伪条件</h3><div class="fals-item hit">
+      <span style="font-size:16px">🚨</span>
+      <div><div class="fals-title">① 收盘跌破 84.5</div><div class="fals-desc">已有收盘低于折算后的止损线，原底部判断失效。</div></div>
+    </div><div class="fals-item ok">
+      <span style="font-size:16px">✅</span>
+      <div><div class="fals-title">② 中报前放量强突 135.57</div><div class="fals-desc">中报前未触发。</div></div>
+    </div><div class="fals-item ok">
+      <span style="font-size:16px">✅</span>
+      <div><div class="fals-title">③ 半年度报告已披露</div><div class="fals-desc">2026年8月19日披露。中报前的突破条件仅用于历史回看。</div></div>
+    </div></section>
+<section class="card"><h3>阻力阶梯</h3><div class="ladder-row ">
+      <span class="ladder-price mono">98.57</span><span class="ladder-name">7/20缺口（第一目标）</span>
+      <span class="ladder-dist mono">+68%</span></div><div class="ladder-row ">
+      <span class="ladder-price mono">118.29</span><span class="ladder-name">7/21高点与0.382回撤（主目标）</span>
+      <span class="ladder-dist mono">+102%</span></div><div class="ladder-row ">
+      <span class="ladder-price mono">135.86</span><span class="ladder-name">7/6低点与0.5回撤</span>
+      <span class="ladder-dist mono">+132%</span></div><div class="ladder-row ">
+      <span class="ladder-price mono">154.36</span><span class="ladder-name">7/2破位区与0.618回撤</span>
+      <span class="ladder-dist mono">+163%</span></div><div class="ladder-row ">
+      <span class="ladder-price mono">165.21</span><span class="ladder-name">7/9高点</span>
+      <span class="ladder-dist mono">+182%</span></div><div class="ladder-row ">
+      <span class="ladder-price mono">189.48</span><span class="ladder-name">7/1前高</span>
+      <span class="ladder-dist mono">+223%</span></div></section>
+<section class="card"><h3>历史记录</h3><label>查询月份 <select id="month"><option value="">全部月份</option><option>2026-11</option><option>2026-10</option><option>2026-09</option><option>2026-08</option><option>2026-07</option><option>2026-06</option><option>2026-05</option><option>2026-04</option><option>2026-03</option><option>2026-02</option><option>2026-01</option></select></label> <span id="range" role="status">2026-01-05 至 2026-11-20 · 213 个交易日</span>
+<p>收盘价采用前复权口径。7 月 1 日及以前仅评估顶部风险。</p><div class="scroll"><table><thead><tr><th>日期</th><th>收盘</th><th>涨跌%</th><th>成交额</th><th>买入分</th><th>风险分</th><th>阶段</th></tr></thead><tbody><tr>
+      <td class="mono" style="font-size:11px">2026-11-20</td>
+      <td class="mono" style="font-weight:700">58.64</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-8.7%</td>
+      <td class="mono">1.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-19</td>
+      <td class="mono" style="font-weight:700">64.19</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.2%</td>
+      <td class="mono">1.1亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">50</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-18</td>
+      <td class="mono" style="font-weight:700">65.64</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.7%</td>
+      <td class="mono">1.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-17</td>
+      <td class="mono" style="font-weight:700">66.78</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.0%</td>
+      <td class="mono">1.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-16</td>
+      <td class="mono" style="font-weight:700">67.43</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.6%</td>
+      <td class="mono">1.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-13</td>
+      <td class="mono" style="font-weight:700">72.22</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.8%</td>
+      <td class="mono">1.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-12</td>
+      <td class="mono" style="font-weight:700">75.82</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.0%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-11</td>
+      <td class="mono" style="font-weight:700">77.39</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.6%</td>
+      <td class="mono">1.4亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">60</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-10</td>
+      <td class="mono" style="font-weight:700">74.73</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+4.1%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">75</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-09</td>
+      <td class="mono" style="font-weight:700">71.77</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.0%</td>
+      <td class="mono">1.3亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">80</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-06</td>
+      <td class="mono" style="font-weight:700">71.76</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.6%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">70</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-05</td>
+      <td class="mono" style="font-weight:700">75.21</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.0%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">65</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-04</td>
+      <td class="mono" style="font-weight:700">73.05</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+15.1%</td>
+      <td class="mono">2.7亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-03</td>
+      <td class="mono" style="font-weight:700">63.46</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-9.3%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-11-02</td>
+      <td class="mono" style="font-weight:700">70.00</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+7.0%</td>
+      <td class="mono">2.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-30</td>
+      <td class="mono" style="font-weight:700">65.44</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.4%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">5</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-29</td>
+      <td class="mono" style="font-weight:700">69.89</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-7.8%</td>
+      <td class="mono">1.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-28</td>
+      <td class="mono" style="font-weight:700">75.80</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+6.8%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">50</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-27</td>
+      <td class="mono" style="font-weight:700">71.00</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.2%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-26</td>
+      <td class="mono" style="font-weight:700">74.88</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.5%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-23</td>
+      <td class="mono" style="font-weight:700">77.62</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.5%</td>
+      <td class="mono">1.9亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">40</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-22</td>
+      <td class="mono" style="font-weight:700">75.00</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.5%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-21</td>
+      <td class="mono" style="font-weight:700">79.33</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.3%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-20</td>
+      <td class="mono" style="font-weight:700">80.40</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.5%</td>
+      <td class="mono">2.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-19</td>
+      <td class="mono" style="font-weight:700">79.21</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.7%</td>
+      <td class="mono">2.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-16</td>
+      <td class="mono" style="font-weight:700">80.57</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.7%</td>
+      <td class="mono">2.3亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-15</td>
+      <td class="mono" style="font-weight:700">84.50</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.1%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-14</td>
+      <td class="mono" style="font-weight:700">89.95</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.0%</td>
+      <td class="mono">2.3亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">50</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-13</td>
+      <td class="mono" style="font-weight:700">95.64</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.4%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">55</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-12</td>
+      <td class="mono" style="font-weight:700">97.00</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.5%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">65</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-09</td>
+      <td class="mono" style="font-weight:700">94.61</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.0%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">50</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-10-08</td>
+      <td class="mono" style="font-weight:700">96.59</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.5%</td>
+      <td class="mono">1.9亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">50</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-30</td>
+      <td class="mono" style="font-weight:700">103.28</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.1%</td>
+      <td class="mono">1.4亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">60</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-29</td>
+      <td class="mono" style="font-weight:700">108.87</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.5%</td>
+      <td class="mono">1.2亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">70</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-28</td>
+      <td class="mono" style="font-weight:700">108.29</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-8.0%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">55</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-24</td>
+      <td class="mono" style="font-weight:700">117.74</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.3%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">70</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-23</td>
+      <td class="mono" style="font-weight:700">123.04</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.2%</td>
+      <td class="mono">2.1亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">80</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-22</td>
+      <td class="mono" style="font-weight:700">122.76</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.8%</td>
+      <td class="mono">3.0亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">85</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-21</td>
+      <td class="mono" style="font-weight:700">120.58</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.8%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">75</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-18</td>
+      <td class="mono" style="font-weight:700">121.49</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+7.7%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">85</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-17</td>
+      <td class="mono" style="font-weight:700">112.76</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.1%</td>
+      <td class="mono">1.5亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">75</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-16</td>
+      <td class="mono" style="font-weight:700">114.07</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+5.9%</td>
+      <td class="mono">2.2亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">85</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-15</td>
+      <td class="mono" style="font-weight:700">107.73</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.6%</td>
+      <td class="mono">1.4亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">60</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-14</td>
+      <td class="mono" style="font-weight:700">108.39</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.1%</td>
+      <td class="mono">1.4亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">80</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-11</td>
+      <td class="mono" style="font-weight:700">106.15</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.5%</td>
+      <td class="mono">1.3亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">65</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-10</td>
+      <td class="mono" style="font-weight:700">107.75</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.1%</td>
+      <td class="mono">1.1亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">55</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-09</td>
+      <td class="mono" style="font-weight:700">110.05</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.3%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">65</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-08</td>
+      <td class="mono" style="font-weight:700">108.61</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.4%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-07</td>
+      <td class="mono" style="font-weight:700">111.23</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+4.3%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">60</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-04</td>
+      <td class="mono" style="font-weight:700">106.61</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.1%</td>
+      <td class="mono">2.5亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">40</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-03</td>
+      <td class="mono" style="font-weight:700">112.36</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.0%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">40</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-02</td>
+      <td class="mono" style="font-weight:700">112.36</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.3%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-09-01</td>
+      <td class="mono" style="font-weight:700">114.96</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.3%</td>
+      <td class="mono">3.0亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-31</td>
+      <td class="mono" style="font-weight:700">122.64</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.7%</td>
+      <td class="mono">2.0亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">70</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-28</td>
+      <td class="mono" style="font-weight:700">118.23</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.4%</td>
+      <td class="mono">2.3亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-27</td>
+      <td class="mono" style="font-weight:700">123.71</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.4%</td>
+      <td class="mono">2.7亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">75</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-26</td>
+      <td class="mono" style="font-weight:700">119.61</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.5%</td>
+      <td class="mono">2.7亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-25</td>
+      <td class="mono" style="font-weight:700">123.92</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.8%</td>
+      <td class="mono">3.6亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">85</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-24</td>
+      <td class="mono" style="font-weight:700">120.57</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.1%</td>
+      <td class="mono">3.0亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">65</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-21</td>
+      <td class="mono" style="font-weight:700">120.50</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.2%</td>
+      <td class="mono">3.2亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">70</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-20</td>
+      <td class="mono" style="font-weight:700">119.03</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.3%</td>
+      <td class="mono">3.7亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">80</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-19</td>
+      <td class="mono" style="font-weight:700">115.18</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-12.7%</td>
+      <td class="mono">5.2亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">65</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-18</td>
+      <td class="mono" style="font-weight:700">132.00</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+4.9%</td>
+      <td class="mono">5.4亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">100</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-17</td>
+      <td class="mono" style="font-weight:700">125.86</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+11.1%</td>
+      <td class="mono">4.2亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">95</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-14</td>
+      <td class="mono" style="font-weight:700">113.29</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.5%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">75</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-13</td>
+      <td class="mono" style="font-weight:700">111.65</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.1%</td>
+      <td class="mono">2.7亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">55</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-12</td>
+      <td class="mono" style="font-weight:700">112.87</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.7%</td>
+      <td class="mono">2.5亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">75</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-11</td>
+      <td class="mono" style="font-weight:700">108.80</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.9%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">85</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-10</td>
+      <td class="mono" style="font-weight:700">110.96</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.6%</td>
+      <td class="mono">2.4亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">80</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-07</td>
+      <td class="mono" style="font-weight:700">112.71</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+5.3%</td>
+      <td class="mono">3.3亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">100</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-06</td>
+      <td class="mono" style="font-weight:700">106.99</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+4.6%</td>
+      <td class="mono">3.2亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">100</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-05</td>
+      <td class="mono" style="font-weight:700">102.31</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+13.5%</td>
+      <td class="mono">3.5亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">100</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-04</td>
+      <td class="mono" style="font-weight:700">90.15</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+6.7%</td>
+      <td class="mono">2.4亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">50</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-08-03</td>
+      <td class="mono" style="font-weight:700">84.49</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.3%</td>
+      <td class="mono">2.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">破位下跌</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-31</td>
+      <td class="mono" style="font-weight:700">89.27</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.7%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#a1620714;color:#a16207;border:1px solid #a1620730">筑底中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-30</td>
+      <td class="mono" style="font-weight:700">86.93</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-9.4%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-29</td>
+      <td class="mono" style="font-weight:700">95.93</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.9%</td>
+      <td class="mono">2.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-28</td>
+      <td class="mono" style="font-weight:700">101.94</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.6%</td>
+      <td class="mono">3.0亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">40</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-27</td>
+      <td class="mono" style="font-weight:700">109.12</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.2%</td>
+      <td class="mono">2.9亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">70</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-24</td>
+      <td class="mono" style="font-weight:700">107.85</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.0%</td>
+      <td class="mono">2.8亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">70</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-23</td>
+      <td class="mono" style="font-weight:700">104.72</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.8%</td>
+      <td class="mono">2.7亿</td>
+      <td class="mono" style="font-weight:900;color:#15803d">65</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-22</td>
+      <td class="mono" style="font-weight:700">109.95</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-7.0%</td>
+      <td class="mono">3.6亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">45</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#2563eb14;color:#2563eb;border:1px solid #2563eb30">反弹中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-21</td>
+      <td class="mono" style="font-weight:700">118.26</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+20.0%</td>
+      <td class="mono">5.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">5</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-20</td>
+      <td class="mono" style="font-weight:700">98.55</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-18.4%</td>
+      <td class="mono">4.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-17</td>
+      <td class="mono" style="font-weight:700">120.85</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-11.6%</td>
+      <td class="mono">3.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-16</td>
+      <td class="mono" style="font-weight:700">136.73</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.6%</td>
+      <td class="mono">4.1亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">40</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#a1620714;color:#a16207;border:1px solid #a1620730">筑底中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-15</td>
+      <td class="mono" style="font-weight:700">143.39</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-8.9%</td>
+      <td class="mono">6.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#a1620714;color:#a16207;border:1px solid #a1620730">筑底中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-14</td>
+      <td class="mono" style="font-weight:700">157.43</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.7%</td>
+      <td class="mono">7.3亿</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#a1620714;color:#a16207;border:1px solid #a1620730">筑底中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-13</td>
+      <td class="mono" style="font-weight:700">161.79</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.3%</td>
+      <td class="mono">7.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#a1620714;color:#a16207;border:1px solid #a1620730">筑底中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-10</td>
+      <td class="mono" style="font-weight:700">161.36</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.3%</td>
+      <td class="mono">10.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">25</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#a1620714;color:#a16207;border:1px solid #a1620730">筑底中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-09</td>
+      <td class="mono" style="font-weight:700">165.21</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+20.0%</td>
+      <td class="mono">5.6亿</td>
+      <td class="mono" style="font-weight:900;color:#a16207">40</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#15803d14;color:#15803d;border:1px solid #15803d30">反转确认</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-08</td>
+      <td class="mono" style="font-weight:700">137.66</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.1%</td>
+      <td class="mono">3.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-07</td>
+      <td class="mono" style="font-weight:700">140.57</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.5%</td>
+      <td class="mono">3.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-06</td>
+      <td class="mono" style="font-weight:700">135.84</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.6%</td>
+      <td class="mono">4.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-03</td>
+      <td class="mono" style="font-weight:700">145.43</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.8%</td>
+      <td class="mono">2.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-02</td>
+      <td class="mono" style="font-weight:700">154.39</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-12.0%</td>
+      <td class="mono">2.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">10</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">下跌中</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-07-01</td>
+      <td class="mono" style="font-weight:700">175.42</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-6.7%</td>
+      <td class="mono">3.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-30</td>
+      <td class="mono" style="font-weight:700">188.00</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+8.1%</td>
+      <td class="mono">5.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-29</td>
+      <td class="mono" style="font-weight:700">173.86</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+7.7%</td>
+      <td class="mono">5.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-26</td>
+      <td class="mono" style="font-weight:700">161.39</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-8.1%</td>
+      <td class="mono">3.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-25</td>
+      <td class="mono" style="font-weight:700">175.57</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+8.6%</td>
+      <td class="mono">4.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-24</td>
+      <td class="mono" style="font-weight:700">161.62</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.7%</td>
+      <td class="mono">3.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-23</td>
+      <td class="mono" style="font-weight:700">162.74</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.8%</td>
+      <td class="mono">3.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-22</td>
+      <td class="mono" style="font-weight:700">169.14</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.0%</td>
+      <td class="mono">3.3亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-18</td>
+      <td class="mono" style="font-weight:700">165.83</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.1%</td>
+      <td class="mono">2.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-17</td>
+      <td class="mono" style="font-weight:700">171.07</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.5%</td>
+      <td class="mono">2.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-16</td>
+      <td class="mono" style="font-weight:700">172.00</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+7.1%</td>
+      <td class="mono">4.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-15</td>
+      <td class="mono" style="font-weight:700">160.63</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+5.8%</td>
+      <td class="mono">3.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-12</td>
+      <td class="mono" style="font-weight:700">151.86</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-11.7%</td>
+      <td class="mono">3.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-11</td>
+      <td class="mono" style="font-weight:700">172.05</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+12.7%</td>
+      <td class="mono">4.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-10</td>
+      <td class="mono" style="font-weight:700">152.71</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.3%</td>
+      <td class="mono">3.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-09</td>
+      <td class="mono" style="font-weight:700">159.64</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+10.3%</td>
+      <td class="mono">5.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-08</td>
+      <td class="mono" style="font-weight:700">144.76</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.1%</td>
+      <td class="mono">3.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-05</td>
+      <td class="mono" style="font-weight:700">143.21</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+6.6%</td>
+      <td class="mono">4.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-04</td>
+      <td class="mono" style="font-weight:700">134.36</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+5.6%</td>
+      <td class="mono">4.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-03</td>
+      <td class="mono" style="font-weight:700">127.21</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.8%</td>
+      <td class="mono">3.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-02</td>
+      <td class="mono" style="font-weight:700">122.50</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.3%</td>
+      <td class="mono">3.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-06-01</td>
+      <td class="mono" style="font-weight:700">122.13</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-7.5%</td>
+      <td class="mono">4.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-29</td>
+      <td class="mono" style="font-weight:700">132.00</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.0%</td>
+      <td class="mono">3.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-28</td>
+      <td class="mono" style="font-weight:700">139.00</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+7.0%</td>
+      <td class="mono">4.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-27</td>
+      <td class="mono" style="font-weight:700">129.86</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.6%</td>
+      <td class="mono">4.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-26</td>
+      <td class="mono" style="font-weight:700">132.00</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-8.6%</td>
+      <td class="mono">5.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-25</td>
+      <td class="mono" style="font-weight:700">144.34</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.3%</td>
+      <td class="mono">6.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-22</td>
+      <td class="mono" style="font-weight:700">146.29</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+15.8%</td>
+      <td class="mono">6.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">20</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-21</td>
+      <td class="mono" style="font-weight:700">126.27</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+7.3%</td>
+      <td class="mono">7.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-20</td>
+      <td class="mono" style="font-weight:700">117.71</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.2%</td>
+      <td class="mono">4.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-19</td>
+      <td class="mono" style="font-weight:700">117.51</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+20.0%</td>
+      <td class="mono">6.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">20</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-18</td>
+      <td class="mono" style="font-weight:700">97.90</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.9%</td>
+      <td class="mono">2.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-15</td>
+      <td class="mono" style="font-weight:700">96.99</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.4%</td>
+      <td class="mono">2.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-14</td>
+      <td class="mono" style="font-weight:700">93.79</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.9%</td>
+      <td class="mono">1.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-13</td>
+      <td class="mono" style="font-weight:700">95.57</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.6%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-12</td>
+      <td class="mono" style="font-weight:700">96.16</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.2%</td>
+      <td class="mono">4.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-11</td>
+      <td class="mono" style="font-weight:700">99.36</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+4.7%</td>
+      <td class="mono">3.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-08</td>
+      <td class="mono" style="font-weight:700">94.93</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.0%</td>
+      <td class="mono">2.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-07</td>
+      <td class="mono" style="font-weight:700">96.88</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+11.2%</td>
+      <td class="mono">2.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-05-06</td>
+      <td class="mono" style="font-weight:700">87.12</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.0%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-30</td>
+      <td class="mono" style="font-weight:700">88.93</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.0%</td>
+      <td class="mono">2.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-29</td>
+      <td class="mono" style="font-weight:700">87.21</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.7%</td>
+      <td class="mono">2.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-28</td>
+      <td class="mono" style="font-weight:700">87.86</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.6%</td>
+      <td class="mono">2.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-27</td>
+      <td class="mono" style="font-weight:700">88.36</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+7.2%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-24</td>
+      <td class="mono" style="font-weight:700">82.43</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.1%</td>
+      <td class="mono">2.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-23</td>
+      <td class="mono" style="font-weight:700">83.32</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.3%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-22</td>
+      <td class="mono" style="font-weight:700">84.41</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.3%</td>
+      <td class="mono">2.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-21</td>
+      <td class="mono" style="font-weight:700">82.50</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.3%</td>
+      <td class="mono">2.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-20</td>
+      <td class="mono" style="font-weight:700">80.61</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.3%</td>
+      <td class="mono">2.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-17</td>
+      <td class="mono" style="font-weight:700">84.26</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+4.9%</td>
+      <td class="mono">3.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-16</td>
+      <td class="mono" style="font-weight:700">80.34</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.2%</td>
+      <td class="mono">2.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-15</td>
+      <td class="mono" style="font-weight:700">80.50</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.4%</td>
+      <td class="mono">3.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-14</td>
+      <td class="mono" style="font-weight:700">77.86</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.2%</td>
+      <td class="mono">4.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-13</td>
+      <td class="mono" style="font-weight:700">78.78</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+16.3%</td>
+      <td class="mono">5.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#a16207">47</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-10</td>
+      <td class="mono" style="font-weight:700">67.74</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.1%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-09</td>
+      <td class="mono" style="font-weight:700">68.53</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.5%</td>
+      <td class="mono">2.3亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-08</td>
+      <td class="mono" style="font-weight:700">68.21</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+8.1%</td>
+      <td class="mono">2.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-07</td>
+      <td class="mono" style="font-weight:700">63.11</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.4%</td>
+      <td class="mono">1.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-03</td>
+      <td class="mono" style="font-weight:700">62.86</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.1%</td>
+      <td class="mono">1.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-02</td>
+      <td class="mono" style="font-weight:700">64.21</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.7%</td>
+      <td class="mono">1.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-04-01</td>
+      <td class="mono" style="font-weight:700">67.39</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+11.3%</td>
+      <td class="mono">3.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-31</td>
+      <td class="mono" style="font-weight:700">60.57</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.3%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-30</td>
+      <td class="mono" style="font-weight:700">62.66</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.0%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-27</td>
+      <td class="mono" style="font-weight:700">62.04</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.3%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-26</td>
+      <td class="mono" style="font-weight:700">62.87</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.2%</td>
+      <td class="mono">2.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-25</td>
+      <td class="mono" style="font-weight:700">61.52</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+5.4%</td>
+      <td class="mono">2.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-24</td>
+      <td class="mono" style="font-weight:700">58.36</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+8.1%</td>
+      <td class="mono">3.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-23</td>
+      <td class="mono" style="font-weight:700">54.00</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.6%</td>
+      <td class="mono">2.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-20</td>
+      <td class="mono" style="font-weight:700">57.22</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.7%</td>
+      <td class="mono">2.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-19</td>
+      <td class="mono" style="font-weight:700">58.79</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+7.8%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-18</td>
+      <td class="mono" style="font-weight:700">54.51</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+5.6%</td>
+      <td class="mono">0.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-17</td>
+      <td class="mono" style="font-weight:700">51.64</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.7%</td>
+      <td class="mono">0.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-16</td>
+      <td class="mono" style="font-weight:700">52.54</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.6%</td>
+      <td class="mono">0.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-13</td>
+      <td class="mono" style="font-weight:700">52.83</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.1%</td>
+      <td class="mono">0.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-12</td>
+      <td class="mono" style="font-weight:700">52.88</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.6%</td>
+      <td class="mono">0.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-11</td>
+      <td class="mono" style="font-weight:700">54.27</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-2.1%</td>
+      <td class="mono">1.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-10</td>
+      <td class="mono" style="font-weight:700">55.43</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+5.6%</td>
+      <td class="mono">0.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-09</td>
+      <td class="mono" style="font-weight:700">52.51</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.6%</td>
+      <td class="mono">1.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-06</td>
+      <td class="mono" style="font-weight:700">55.06</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.2%</td>
+      <td class="mono">1.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-05</td>
+      <td class="mono" style="font-weight:700">53.86</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.0%</td>
+      <td class="mono">1.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-04</td>
+      <td class="mono" style="font-weight:700">52.82</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.5%</td>
+      <td class="mono">1.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-03</td>
+      <td class="mono" style="font-weight:700">54.71</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-7.2%</td>
+      <td class="mono">1.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-03-02</td>
+      <td class="mono" style="font-weight:700">58.96</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.4%</td>
+      <td class="mono">1.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-27</td>
+      <td class="mono" style="font-weight:700">61.67</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.7%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-26</td>
+      <td class="mono" style="font-weight:700">61.26</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.6%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-25</td>
+      <td class="mono" style="font-weight:700">59.72</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.3%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">20</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-24</td>
+      <td class="mono" style="font-weight:700">57.84</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.3%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-13</td>
+      <td class="mono" style="font-weight:700">56.54</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+3.7%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">20</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-12</td>
+      <td class="mono" style="font-weight:700">54.51</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.2%</td>
+      <td class="mono">1.3亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-11</td>
+      <td class="mono" style="font-weight:700">55.15</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.4%</td>
+      <td class="mono">1.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">30</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-10</td>
+      <td class="mono" style="font-weight:700">57.11</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.8%</td>
+      <td class="mono">0.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-09</td>
+      <td class="mono" style="font-weight:700">57.54</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.7%</td>
+      <td class="mono">1.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-06</td>
+      <td class="mono" style="font-weight:700">57.15</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.2%</td>
+      <td class="mono">1.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-05</td>
+      <td class="mono" style="font-weight:700">57.24</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-4.7%</td>
+      <td class="mono">1.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-04</td>
+      <td class="mono" style="font-weight:700">60.04</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-0.4%</td>
+      <td class="mono">1.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-03</td>
+      <td class="mono" style="font-weight:700">60.30</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+4.5%</td>
+      <td class="mono">1.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">20</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-02-02</td>
+      <td class="mono" style="font-weight:700">57.71</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-7.9%</td>
+      <td class="mono">2.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#a16207">55</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-30</td>
+      <td class="mono" style="font-weight:700">62.69</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.2%</td>
+      <td class="mono">2.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">20</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-29</td>
+      <td class="mono" style="font-weight:700">62.59</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-5.4%</td>
+      <td class="mono">1.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#a16207">55</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-28</td>
+      <td class="mono" style="font-weight:700">66.19</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.1%</td>
+      <td class="mono">2.9亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#a16207">55</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-27</td>
+      <td class="mono" style="font-weight:700">66.96</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+5.2%</td>
+      <td class="mono">3.3亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#a16207">40</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-26</td>
+      <td class="mono" style="font-weight:700">63.66</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-3.9%</td>
+      <td class="mono">2.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#dc2626">70</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-23</td>
+      <td class="mono" style="font-weight:700">66.26</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+8.1%</td>
+      <td class="mono">3.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#a16207">40</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-22</td>
+      <td class="mono" style="font-weight:700">61.29</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-8.0%</td>
+      <td class="mono">4.0亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#dc2626">87</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-21</td>
+      <td class="mono" style="font-weight:700">66.63</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.2%</td>
+      <td class="mono">4.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#dc2626">97</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-20</td>
+      <td class="mono" style="font-weight:700">66.50</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.2%</td>
+      <td class="mono">5.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#dc2626">67</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-19</td>
+      <td class="mono" style="font-weight:700">65.04</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+18.6%</td>
+      <td class="mono">5.2亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#dc2626">67</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-16</td>
+      <td class="mono" style="font-weight:700">54.84</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+11.6%</td>
+      <td class="mono">3.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#a16207">52</td>
+      <td><span class="ph-tag" style="background:#dc262614;color:#dc2626;border:1px solid #dc262630">见顶区</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-15</td>
+      <td class="mono" style="font-weight:700">49.16</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.6%</td>
+      <td class="mono">0.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-14</td>
+      <td class="mono" style="font-weight:700">49.96</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.8%</td>
+      <td class="mono">1.6亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">35</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-13</td>
+      <td class="mono" style="font-weight:700">49.54</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.2%</td>
+      <td class="mono">1.1亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-12</td>
+      <td class="mono" style="font-weight:700">50.14</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+6.8%</td>
+      <td class="mono">1.3亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">20</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-09</td>
+      <td class="mono" style="font-weight:700">46.96</td>
+      <td class="mono" style="font-weight:700;color:#16a34a">-1.8%</td>
+      <td class="mono">0.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">15</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-08</td>
+      <td class="mono" style="font-weight:700">47.84</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+0.5%</td>
+      <td class="mono">0.7亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-07</td>
+      <td class="mono" style="font-weight:700">47.59</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+4.0%</td>
+      <td class="mono">0.8亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-06</td>
+      <td class="mono" style="font-weight:700">45.74</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+1.3%</td>
+      <td class="mono">0.5亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr><tr>
+      <td class="mono" style="font-size:11px">2026-01-05</td>
+      <td class="mono" style="font-weight:700">45.17</td>
+      <td class="mono" style="font-weight:700;color:#dc2626">+2.6%</td>
+      <td class="mono">0.4亿</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td class="mono" style="font-weight:900;color:#999">0</td>
+      <td><span class="ph-tag" style="background:#7c3aed14;color:#7c3aed;border:1px solid #7c3aed30">主升浪</span></td>
+    </tr></tbody></table></div></section>
+<p>交易日收盘后更新。持仓同步和微信推送请使用<a href="https://ekgd-stage-system.zoeyzhu97.chatgpt.site">原站</a>。</p></main>
+<script>const month=document.querySelector('#month'),rows=[...document.querySelectorAll('tbody tr')];month.onchange=()=>{const dates=[];for(const row of rows){const date=row.cells[0].textContent;row.hidden=!date.startsWith(month.value);if(!row.hidden)dates.push(date)}document.querySelector('#range').textContent=dates.at(-1)+' 至 '+dates[0]+' · '+dates.length+' 个交易日'};</script></html>
